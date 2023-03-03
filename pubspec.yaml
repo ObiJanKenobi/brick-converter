@@ -105,5 +105,8 @@ msix_config:
   publisher_display_name: FPE
   identity_name: de.fpe.brickconverter
   msix_version: 1.0.0.0
-  logo_path: C:\path\to\logo.png
+  logo_path: C:\develop\brick_converter\assets\fpe.png
   capabilities: internetClient
+  certificate_path: C:\develop\brick_converter\brick-converter.pfx
+  certificate_password: 123456
+  publisher: CN=FPE, O=FPE, C=DE
