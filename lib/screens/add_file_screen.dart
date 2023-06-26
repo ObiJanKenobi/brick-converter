@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:brick_converter/model/part_group.dart';
 import 'package:brick_converter/ui/part_group_card.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
@@ -44,8 +43,10 @@ class AddFileScreenState extends State<AddFileScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    final factor = size.width % 200;
-    print("Width: ${size.width} | Columns: $factor");
+    final factor = size.width % 350;
+
+    final double maxCardWidth = 350 + factor;
+    print("Width: ${size.width} | Cardw: $maxCardWidth");
 
     return Scaffold(
         body: CustomScrollView(slivers: [
@@ -99,7 +100,7 @@ class AddFileScreenState extends State<AddFileScreen> {
               });
               return SliverGrid(
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 500,
+                  maxCrossAxisExtent: maxCardWidth,
                   mainAxisSpacing: 6.0,
                   crossAxisSpacing: 6.0,
                   childAspectRatio: 2.0,

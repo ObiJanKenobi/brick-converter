@@ -1,6 +1,4 @@
 import 'package:brick_converter/common_libs.dart';
-import 'package:brick_converter/model/brick_part.dart';
-import 'package:brick_converter/model/part_group.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +26,8 @@ class PartGroupScreenState extends State<PartGroupScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final extend = size.width > 500 ? size.width / 2 : size.width;
+    final aspect = size.width > 500 ? 6.0 : 4.0;
     return Stack(children: [
       Positioned(
           top: 10,
@@ -80,10 +80,10 @@ class PartGroupScreenState extends State<PartGroupScreen> {
                 slivers: [
                   SliverGrid(
                     gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: size.width / 2,
+                      maxCrossAxisExtent: extend,
                       mainAxisSpacing: 6.0,
                       crossAxisSpacing: 6.0,
-                      childAspectRatio: 5.0,
+                      childAspectRatio: aspect,
                     ),
                     delegate: SliverChildBuilderDelegate(
                       (BuildContext context, int index) {

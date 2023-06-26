@@ -1,9 +1,9 @@
 import 'package:brick_converter/common_libs.dart';
-import 'package:brick_converter/logic/brick_converter_logic.dart';
-import 'package:brick_converter/logic/bricklink_logic.dart';
-import 'package:brick_converter/model/part_group.dart';
+import 'package:brick_lib/logic/brick_converter_logic.dart';
+import 'package:brick_lib/logic/bricklink_logic.dart';
+import 'package:brick_lib/model/part_group.dart';
 import 'package:brick_converter/router.dart';
-import 'package:brick_converter/service/rebrickable_service.dart';
+import 'package:brick_lib/service/rebrickable_service.dart';
 import 'package:brick_converter/ui/part_group_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -39,12 +39,9 @@ class MyApp extends StatelessWidget with GetItMixin {
       routerDelegate: appRouter.routerDelegate,
       title: 'MOC Part Collector',
       theme: ThemeData.from(
-              useMaterial3: true,
-              colorScheme: ColorScheme.fromSeed(
-                  seedColor: const Color(0xff562C2C), secondary: const Color(0xFF127475)))
+              useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff562C2C), secondary: const Color(0xFF127475)))
           .copyWith(
-              appBarTheme:
-                  AppBarTheme.of(context).copyWith(backgroundColor: const Color(0xFF562C2C)),
+              appBarTheme: AppBarTheme.of(context).copyWith(backgroundColor: const Color(0xFF562C2C)),
               backgroundColor: const Color(0xFFF5DFBB),
               scaffoldBackgroundColor: const Color(0xFFF5DFBB)),
     );
@@ -67,20 +64,3 @@ AppLogic get appLogic => GetIt.I.get<AppLogic>();
 BrickConverterLogic get brickConverterLogic => GetIt.I.get<BrickConverterLogic>();
 
 BricklinkLogic get bricklinkLogic => GetIt.I.get<BricklinkLogic>();
-
-extension HexColor on Color {
-  /// String is in the format "aabbcc" or "ffaabbcc" with an optional leading "#".
-  static Color fromHex(String hexString) {
-    final buffer = StringBuffer();
-    if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
-    buffer.write(hexString.replaceFirst('#', ''));
-    return Color(int.parse(buffer.toString(), radix: 16));
-  }
-
-  /// Prefixes a hash sign if [leadingHashSign] is set to `true` (default is `true`).
-  String toHex({bool leadingHashSign = true}) => '${leadingHashSign ? '#' : ''}'
-      '${alpha.toRadixString(16).padLeft(2, '0')}'
-      '${red.toRadixString(16).padLeft(2, '0')}'
-      '${green.toRadixString(16).padLeft(2, '0')}'
-      '${blue.toRadixString(16).padLeft(2, '0')}';
-}

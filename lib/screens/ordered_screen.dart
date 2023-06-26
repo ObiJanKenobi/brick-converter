@@ -24,6 +24,10 @@ class OrderedScreenState extends State<OrderedScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final extend = size.width > 500 ? size.width / 2 : size.width;
+    final aspect = size.width > 500 ? 6.0 : 4.0;
+
     return Scaffold(
       body: CustomScrollView(slivers: [
         SliverAppBar(
@@ -52,12 +56,12 @@ class OrderedScreenState extends State<OrderedScreen> {
                   padding: const EdgeInsets.all(20.0),
                   child: ElevatedButton.icon(
                     onPressed: _saveFile,
-                    icon: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    icon: const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
                       child: Icon(Icons.save),
                     ),
-                    label: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    label: const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
                       child: Text("Speichern"),
                     ),
                   )),
@@ -66,11 +70,11 @@ class OrderedScreenState extends State<OrderedScreen> {
           ),
         ),
         SliverGrid(
-          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 350.0,
+          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: extend,
             mainAxisSpacing: 6.0,
             crossAxisSpacing: 6.0,
-            childAspectRatio: 3,
+            childAspectRatio: aspect,
           ),
           delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) {
@@ -105,7 +109,7 @@ class OrderedScreenState extends State<OrderedScreen> {
                 onPressed: (BuildContext context) {
                   handleDelete(part);
                 },
-                backgroundColor: Color(0xFFFE4A49),
+                backgroundColor: const Color(0xFFFE4A49),
                 foregroundColor: Colors.white,
                 icon: Icons.delete,
                 label: 'Delete',
@@ -133,7 +137,7 @@ class OrderedScreenState extends State<OrderedScreen> {
                     radius: 30,
                     backgroundColor: HexColor.fromHex(part.rgb),
                     child: CircleAvatar(
-                      radius: 20,
+                      radius: 24,
                       backgroundColor: Colors.white,
                       foregroundImage: CachedNetworkImageProvider(part.details?.imgUrl ?? ""),
                     ),
@@ -146,7 +150,7 @@ class OrderedScreenState extends State<OrderedScreen> {
               ),
               subtitle: Text(
                 "Anzahl: ${part.quantity}",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ))),
     );
   }
@@ -158,6 +162,6 @@ class OrderedScreenState extends State<OrderedScreen> {
 
   void _saveFile() async {
     await appLogic.saveOrdered();
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: const Text("Teileliste gespeichert")));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Teileliste gespeichert")));
   }
 }

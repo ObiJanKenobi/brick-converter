@@ -12,5 +12,5 @@ export 'package:brick_converter/logger.dart';
 export 'package:brick_converter/logic/app_logic.dart';
 export 'package:brick_converter/main.dart';
 export 'package:brick_converter/router.dart';
-export 'package:brick_converter/model/brick_part.dart';
+export 'package:brick_lib/brick_lib.dart';
 export 'package:logger/logger.dart';

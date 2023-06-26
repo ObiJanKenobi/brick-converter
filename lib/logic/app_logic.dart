@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:brick_converter/common_libs.dart';
-import 'package:brick_converter/model/part_group.dart';
+import 'package:brick_lib/model/part_group.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:intl/intl.dart';
@@ -21,14 +21,11 @@ class AppLogic {
   List<BrickPart> orderedParts = [];
   final Map<String, PartGroup> groupedParts = {};
 
-  int get partsMappedCount =>
-      currentParts.fold(0, (previousValue, element) => previousValue + element.quantity);
+  int get partsMappedCount => currentParts.fold(0, (previousValue, element) => previousValue + element.quantity);
 
-  int get partsMissingCount =>
-      missingParts.fold(0, (previousValue, element) => previousValue + element.quantity);
+  int get partsMissingCount => missingParts.fold(0, (previousValue, element) => previousValue + element.quantity);
 
-  int get partsOrderedCount =>
-      orderedParts.fold(0, (previousValue, element) => previousValue + element.quantity);
+  int get partsOrderedCount => orderedParts.fold(0, (previousValue, element) => previousValue + element.quantity);
   String mocName = "";
 
   bool get csvLoaded => groupedParts.isNotEmpty;
@@ -52,8 +49,7 @@ class AppLogic {
   }
 
   Future<void> loadFile() async {
-    FilePickerResult? result = await FilePicker.platform
-        .pickFiles(type: FileType.custom, allowedExtensions: ['csv'], allowMultiple: true);
+    FilePickerResult? result = await FilePicker.platform.pickFiles(type: FileType.custom, allowedExtensions: ['csv'], allowMultiple: true);
     if (result != null) {
       for (var i = 0; i < result.files.length; ++i) {
         final fileRef = result.files[i];

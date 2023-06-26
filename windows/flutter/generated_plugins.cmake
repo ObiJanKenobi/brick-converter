@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  brick_lib
   url_launcher_windows
 )
 

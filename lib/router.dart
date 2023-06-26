@@ -1,4 +1,3 @@
-import 'package:brick_converter/model/part_group.dart';
 import 'package:brick_converter/screens/add_file_screen.dart';
 import 'package:brick_converter/screens/blicklink_screen.dart';
 import 'package:brick_converter/screens/ordered_screen.dart';

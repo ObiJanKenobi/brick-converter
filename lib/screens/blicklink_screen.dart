@@ -24,6 +24,10 @@ class BricklinkScreenState extends State<BricklinkScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final extend = size.width > 500 ? size.width / 2 : size.width;
+    final aspect = size.width > 500 ? 6.0 : 4.0;
+
     return Scaffold(
       body: CustomScrollView(slivers: [
         SliverAppBar(
@@ -56,8 +60,8 @@ class BricklinkScreenState extends State<BricklinkScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: SvgPicture.asset("assets/bl_logo.svg"),
                     ),
-                    label: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    label: const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
                       child: Text("Kaufen"),
                     ),
                   )),
@@ -66,11 +70,11 @@ class BricklinkScreenState extends State<BricklinkScreen> {
           ),
         ),
         SliverGrid(
-          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 350.0,
+          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: extend,
             mainAxisSpacing: 6.0,
             crossAxisSpacing: 6.0,
-            childAspectRatio: 3,
+            childAspectRatio: aspect,
           ),
           delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) {
@@ -105,7 +109,7 @@ class BricklinkScreenState extends State<BricklinkScreen> {
                 onPressed: (BuildContext context) {
                   handleDelete(part);
                 },
-                backgroundColor: Color(0xFFFE4A49),
+                backgroundColor: const Color(0xFFFE4A49),
                 foregroundColor: Colors.white,
                 icon: Icons.delete,
                 label: 'Delete',
@@ -130,7 +134,7 @@ class BricklinkScreenState extends State<BricklinkScreen> {
                 child: AspectRatio(
                   aspectRatio: 1,
                   child: CircleAvatar(
-                    radius: 30,
+                    radius: 26,
                     backgroundColor: HexColor.fromHex(part.rgb),
                     child: CircleAvatar(
                       radius: 20,
@@ -143,7 +147,7 @@ class BricklinkScreenState extends State<BricklinkScreen> {
               title: Text("${part.name} (${part.colorName})"),
               subtitle: Text(
                 "Anzahl: ${part.quantity}",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ))),
     );
   }
@@ -151,8 +155,7 @@ class BricklinkScreenState extends State<BricklinkScreen> {
   void _openShop() {
     appLogic.openBricklink();
 
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: const Text("XML in Zwischenablage kopiert")));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("XML in Zwischenablage kopiert")));
   }
 
   void handleDelete(BrickPart part) {
