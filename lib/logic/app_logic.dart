@@ -5,6 +5,7 @@ import 'package:brick_lib/model/part_group.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 const ywSearchUrl = "https://www.yourwobb.com/search?q=";
 const bricklinkUploadUrl = "https://www.bricklink.com/v2/wanted/upload.page?utm_content=subnav";
@@ -71,7 +72,7 @@ class AppLogic {
           // if (part.goBrickPart?.isNotEmpty == true) {
           currentParts.add(part);
           if (groupedParts.containsKey(part.part) == false) {
-            groupedParts[part.part] = PartGroup();
+            groupedParts[part.part!] = PartGroup();
           }
           groupedParts[part.part]?.addPart(part);
           if (part.goBrickPart == null || part.goBrickPart?.isEmpty == true) {
@@ -91,10 +92,9 @@ class AppLogic {
   }
 
   void openPart(BrickPart part) async {
-    final Uri url = Uri.parse("$ywSearchUrl${part.goBrickPart}");
-    if (!await launchUrl(url)) {
-      throw Exception('Could not launch $url');
-    }
+    final url = "$ywSearchUrl${part.goBrickPart}";
+
+    launchUrlString(url, mode: LaunchMode.externalApplication);
   }
 
   void orderFromBricklink(PartGroup group, BrickPart part) {

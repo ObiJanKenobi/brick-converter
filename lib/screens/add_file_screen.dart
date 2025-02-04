@@ -60,7 +60,7 @@ class AddFileScreenState extends State<AddFileScreen> {
               preferredSize: const Size.fromHeight(4.0),
               child: Container(
                 height: 4,
-                decoration: const BoxDecoration(color: Color(0xFFF2542D)
+                decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary // Color(0xFFF2542D)
                     // gradient: LinearGradient(
                     //   colors: <Color>[Color(0xFFF2542D), Colors.red],
                     // ),
@@ -117,11 +117,12 @@ class AddFileScreenState extends State<AddFileScreen> {
             child: const SliverToBoxAdapter(child: Center(child: Text("No CSV loaded"))),
           )
         ]),
-        floatingActionButton: SpeedDial(icon: Icons.menu, backgroundColor: const Color(0xFFF2542D), children: [
+        floatingActionButton:
+            SpeedDial(icon: Icons.menu, foregroundColor: Colors.white, backgroundColor: Theme.of(context).colorScheme.secondary, children: [
           SpeedDialChild(
             child: const Icon(Icons.add, color: Colors.white),
             label: 'Load CSV',
-            backgroundColor: const Color(0xFFF2542D),
+            backgroundColor: Theme.of(context).colorScheme.secondary,
             onTap: () {
               _loadFile();
             },
@@ -129,7 +130,7 @@ class AddFileScreenState extends State<AddFileScreen> {
           SpeedDialChild(
             child: const Icon(Icons.shopping_basket, color: Colors.white),
             label: 'Ordered',
-            backgroundColor: const Color(0xFFF2542D),
+            backgroundColor: Theme.of(context).colorScheme.secondary,
             onTap: () {
               context.go(ScreenPaths.ordered);
             },
@@ -140,14 +141,14 @@ class AddFileScreenState extends State<AddFileScreen> {
               child: SvgPicture.asset("assets/bl_logo.svg"),
             ),
             label: 'Bricklink',
-            backgroundColor: const Color(0xFFF2542D),
+            backgroundColor: Theme.of(context).colorScheme.secondary,
             onTap: () {
               context.go(ScreenPaths.bricklink);
             },
           ),
         ])
         // FloatingActionButton(
-        //   backgroundColor: const Color(0xFFF2542D),
+        //   backgroundColor: Theme.of(context).colorScheme.secondary,
         //   onPressed: _loadFile,
         //   tooltip: 'Load CSV',
         //   child: const Icon(Icons.add),

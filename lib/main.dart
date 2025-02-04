@@ -39,11 +39,13 @@ class MyApp extends StatelessWidget with GetItMixin {
       routerDelegate: appRouter.routerDelegate,
       title: 'MOC Part Collector',
       theme: ThemeData.from(
-              useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff562C2C), secondary: const Color(0xFF127475)))
+              useMaterial3: true,
+              colorScheme: ColorScheme.fromSeed(
+                  seedColor: const Color(0xffA3B18A), secondary: const Color(0xFF344E41), tertiary: const Color(0xFF588157)))
           .copyWith(
-              appBarTheme: AppBarTheme.of(context).copyWith(backgroundColor: const Color(0xFF562C2C)),
-              backgroundColor: const Color(0xFFF5DFBB),
-              scaffoldBackgroundColor: const Color(0xFFF5DFBB)),
+              appBarTheme: AppBarTheme.of(context).copyWith(backgroundColor: const Color(0xFFA3B18A)),
+              // backgroundColor: const Color(0xFFDAD7CD),
+              scaffoldBackgroundColor: const Color(0xFFDAD7CD)),
     );
   }
 }

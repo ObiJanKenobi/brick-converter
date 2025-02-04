@@ -61,7 +61,7 @@ class AppRoute extends GoRoute {
                 },
               );
             }
-            return MaterialPage(child: pageContent);
+            return MaterialPage(child: pageContent, maintainState: true);
           },
         );
   final bool useFade;

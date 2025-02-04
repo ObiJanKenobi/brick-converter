@@ -135,7 +135,7 @@ class BricklinkScreenState extends State<BricklinkScreen> {
                   aspectRatio: 1,
                   child: CircleAvatar(
                     radius: 26,
-                    backgroundColor: HexColor.fromHex(part.rgb),
+                    backgroundColor: HexColor.fromHex(part.rgb!),
                     child: CircleAvatar(
                       radius: 20,
                       backgroundColor: Colors.white,

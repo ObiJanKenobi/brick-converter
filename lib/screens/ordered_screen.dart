@@ -135,7 +135,7 @@ class OrderedScreenState extends State<OrderedScreen> {
                   aspectRatio: 1,
                   child: CircleAvatar(
                     radius: 30,
-                    backgroundColor: HexColor.fromHex(part.rgb),
+                    backgroundColor: HexColor.fromHex(part.rgb!),
                     child: CircleAvatar(
                       radius: 24,
                       backgroundColor: Colors.white,

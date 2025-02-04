@@ -28,7 +28,7 @@ class PartGroupCardState extends State<PartGroupCard> {
   Widget build(BuildContext context) {
     return Card(
         clipBehavior: Clip.antiAlias,
-        color: Theme.of(context).colorScheme.secondary,
+        color: Theme.of(context).colorScheme.tertiary,
         elevation: 3,
         child: GestureDetector(
             behavior: HitTestBehavior.opaque,
@@ -47,7 +47,7 @@ class PartGroupCardState extends State<PartGroupCard> {
                         tag: "part-img-${group.partNum}",
                         child: CircleAvatar(
                           radius: 40,
-                          backgroundColor: group.noMapping ? const Color(0xFF562C2C) : const Color(0xFF0E9594),
+                          backgroundColor: group.noMapping ? const Color(0xFF562C2C) : const Color(0xFFA3B18A),
                           child: CircleAvatar(
                             radius: 30,
                             backgroundColor: Colors.white,
@@ -61,7 +61,7 @@ class PartGroupCardState extends State<PartGroupCard> {
                   Expanded(
                     child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                       Text("Gesamtanzahl: ${group.quantity}",
-                          style: Theme.of(context).textTheme.overline?.copyWith(color: Colors.grey.shade300)),
+                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.grey.shade300)),
                       Text(
                         group.partName,
                         maxLines: 2,
@@ -72,7 +72,7 @@ class PartGroupCardState extends State<PartGroupCard> {
                 ]),
               ),
               const Spacer(),
-              SizedBox(height: 40, child: GroupColors(group)),
+              SizedBox(height: 40, child: GroupColors(group, null)),
               const SizedBox(
                 height: 20,
               )

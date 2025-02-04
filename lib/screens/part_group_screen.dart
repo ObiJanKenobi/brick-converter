@@ -28,6 +28,19 @@ class PartGroupScreenState extends State<PartGroupScreen> {
     final size = MediaQuery.of(context).size;
     final extend = size.width > 500 ? size.width / 2 : size.width;
     final aspect = size.width > 500 ? 6.0 : 4.0;
+
+    final sorted = <BrickPart>[];
+    sorted.addAll(group.parts);
+    sorted.sort((a, b) {
+      if (a.quantity > b.quantity) {
+        return -1;
+      } else if (b.quantity > a.quantity) {
+        return 1;
+      }
+
+      return 0;
+    });
+
     return Stack(children: [
       Positioned(
           top: 10,
@@ -51,7 +64,7 @@ class PartGroupScreenState extends State<PartGroupScreen> {
             ),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-                Text("Gesamtanzahl: ${group.quantity}", style: Theme.of(context).textTheme.headline6),
+                Text("Gesamtanzahl: ${group.quantity}", style: Theme.of(context).textTheme.headlineMedium),
                 GestureDetector(
                   onTap: () async {
                     await Clipboard.setData(ClipboardData(text: group.partNum));
@@ -59,7 +72,7 @@ class PartGroupScreenState extends State<PartGroupScreen> {
                   },
                   child: Text(
                     group.partNum,
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
                 ),
               ]),
@@ -87,7 +100,7 @@ class PartGroupScreenState extends State<PartGroupScreen> {
                     ),
                     delegate: SliverChildBuilderDelegate(
                       (BuildContext context, int index) {
-                        return _buildPartListItem(group.parts[index]);
+                        return _buildPartListItem(sorted[index]);
                       },
                       childCount: group.parts.length,
                     ),
@@ -172,7 +185,7 @@ class PartGroupScreenState extends State<PartGroupScreen> {
               leading: AspectRatio(
                 aspectRatio: 1,
                 child: ColoredBox(
-                  color: HexColor.fromHex(part.rgb),
+                  color: HexColor.fromHex(part.rgb!),
                 ),
               ),
               title: Text("${part.colorName} (${part.gobricksColor})"),
